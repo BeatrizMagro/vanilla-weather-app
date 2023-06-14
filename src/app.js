@@ -32,6 +32,12 @@ function displayTemperature(response) {
   humidityElement.innerHTML = response.data.temperature.humidity;
   let dateElement = document.querySelector("#date");
   dateElement.innerHTML = formatDate(response.data.time * 1000);
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
+  icon.Element.setAttribute("alt", response.data.condition.description);
 }
 
 let apiKey = "5d058618c14cod5a413bf1b34t180400";
