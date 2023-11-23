@@ -103,6 +103,27 @@ li:first-letter {
   text-decoration: none;
   margin-left: 100px;
 }
+
+.weather-forecast{
+  margin-top:20px;
+  text-align: center;
+}
+
+.weather-forecast-date
+{
+  font-size: 16px;
+  color: black;
+  opacity: 0.3;
+}
+
+.weather-forecast-temperatures{
+  font-size:13px;
+}
+
+.weather-forecast-temperature-min{
+  opacity:0.3;
+}
+
 .small-footer {
   position: fixed;
   bottom: 0;
