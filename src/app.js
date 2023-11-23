@@ -23,36 +23,47 @@ function formatDate(timestamp) {
 
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  temperatureElement.innerHTML = Math.round(response.data.temperature.current);
+
   let cityElement = document.querySelector("#city");
   city.innerHTML = response.data.city;
+
   let descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML = response.data.condition.description;
+
   let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = response.data.temperature.humidity;
+
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = Math.round(response.data.wind.speed);
+
   let dateElement = document.querySelector("#date");
   dateElement.innerHTML = formatDate(response.data.time * 1000);
+
   let iconElement = document.querySelector("#icon");
   iconElement.setAttribute(
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
   iconElement.setAttribute("alt", response.data.condition.description);
-
-  celsiusTemperature = response.data.temperature.current;
 }
 
 function search(city) {
-  console.log(city);
-
   let apiKey = "5d058618c14cod5a413bf1b34t180400";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayTemperature);
+  axios.get(apiUrl).then((response) => {
+    showTemperatureData();
+    displayTemperature(response);
+  });
+}
+
+function showTemperatureData() {
+  document.querySelector("#temperature-data").style.display = "contents";
 }
 
 let celsiusTemperature = null;
+let hasAlreadyConvertedToFahrenheit = false;
+let hasAlreadyConvertedToCelsius = true;
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -60,24 +71,96 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
-function displayFahreinheitTemperature(event) {
+function displayFahrenheitTemperature(event) {
   event.preventDefault();
-  let fahrenheitTemperature = (14 * 9) / 5 + 32;
+
+  if (hasAlreadyConvertedToFahrenheit === true) {
+    return;
+  }
+
   let temperatureElement = document.querySelector("#temperature");
+  let currentTemperature = temperatureElement.innerHTML;
+
+  let fahrenheitTemperature = (currentTemperature * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+
+  hasAlreadyConvertedToFahrenheit = true;
+  hasAlreadyConvertedToCelsius = false;
 }
 
 function displayCelsiusTemperature(event) {
   event.preventDefault();
+
+  if (hasAlreadyConvertedToCelsius === true) {
+    return;
+  }
+
   let temperatureElement = document.querySelector("#temperature");
+  let currentTemperature = temperatureElement.innerHTML;
+  let celsiusTemperature = ((currentTemperature - 32) * 5) / 9;
+
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
+
+  hasAlreadyConvertedToCelsius = true;
+  hasAlreadyConvertedToFahrenheit = false;
 }
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", displayFahreinheitTemperature);
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+document.addEventListener("DOMContentLoaded", function () {
+  let nightModeToggle = document.getElementById("night-mode-toggle");
+
+  nightModeToggle.addEventListener("click", function () {
+    toggleNightMode();
+  });
+
+  function toggleNightMode() {
+    document.body.classList.toggle("night-mode");
+    var container = document.querySelector(".container");
+    container.style.backgroundColor = document.body.classList.contains(
+      "night-mode"
+    )
+      ? "#222831"
+      : "";
+    let city = document.getElementById("city");
+    city.style.color = document.body.classList.contains("night-mode")
+      ? "#929aab"
+      : "";
+    let weatherTemperatureStrong = document.querySelector(
+      ".weather-temperature strong"
+    );
+    weatherTemperatureStrong.style.color = document.body.classList.contains(
+      "night-mode"
+    )
+      ? "#929aab"
+      : "";
+
+    let weatherTemperatureUnits = document.querySelector(
+      ".weather-temperature .units"
+    );
+    weatherTemperatureUnits.style.color = document.body.classList.contains(
+      "night-mode"
+    )
+      ? "#929aab"
+      : "";
+
+    let listItems = document.querySelectorAll("li");
+    listItems.forEach(function (li) {
+      li.style.color = document.body.classList.contains("night-mode")
+        ? "#929aab"
+        : "";
+    });
+
+    let bodyBackgroundColor = document.body.classList.contains("night-mode")
+      ? "#474a56"
+      : "";
+    document.body.style.backgroundColor = bodyBackgroundColor;
+  }
+});

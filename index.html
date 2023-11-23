@@ -18,9 +18,14 @@
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
       crossorigin="anonymous"
     />
-    <title>SheCodes</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+    
+    <title>Weather App</title>
   </head>
-  <body>
+  <body class="body-color">
+   <button type="button" class="btn btn-outline-secondary" id="night-mode-toggle">
+  <i class="fas fa-moon"></i>
+</button>
     <div class="container">
       <div class="weather-app-wrapper">
         <div class="row">
@@ -35,23 +40,23 @@
             />
           </div>
           <div class= "col-2">
-            <input type="submit" value="Search" class="btn btn-primary w-100"/>
+            <button type="button" class="btn btn-secondary">Search</button>
           </div>
             </div>
           </form>
         </div>
-        <div class="weather-app">
+        <div class="weather-app" id="temperature-data">
           <div class="overview">
             <h1 id="city"></h1>
-            <ul>
+            <ul class="weather-info">
               <li>Last updated: <span id="date"></span></li>
               <li id="description"></li>
             </ul>
           </div>
           <div class="row">
             <div class="col-6">
-              <div class="clearfix">
-                <img
+              <div class="weather-temperature">
+                <img 
                   scr="https://w7.pngwing.com/pngs/102/700/png-transparent-white-cloud-cloud-white-clouds-with-black-background-texture-white-text-thumbnail.png"
                   alt="Clear"
                   id="icon"
@@ -71,16 +76,15 @@
             </div>
           </div>
         </div>
-        <small>
-          <a
-            href="https://github.com/BeatrizMagro/vanilla-weather-app"
-            target="_blank"
-            >Open-source code</a
-          >
-          by Beatriz Magro
-        </small>
-      </div>
+       </div>
     </div>
     <script src="src/app.js"></script>
+    <small class="small-footer">
+      <div>
+  <a class="active" href="https://github.com/BeatrizMagro/vanilla-weather-app" target="_blank">
+    Open-source code</div>
+     and hosted <a href="">
+  </a> by Beatriz Magro
+</small>
   </body>
 </html>
