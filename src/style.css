@@ -32,13 +32,15 @@ body {
 #temperature {
   font-size: 32px;
   margin-left: 111px;
+  margin-block:inherit;
 }
 #celsius-link{
   color:#5c636a;
-}
+  }
+
 #fahrenheit-link {
   color: #5c636a;
-}
+  }
 
 .weather-app {
   display: none;
@@ -101,12 +103,21 @@ li:first-letter {
   color: black;
   cursor: default;
   text-decoration: none;
-  margin-left: 100px;
+  margin-left: 120px;
 }
 
 .weather-forecast{
   margin-top:20px;
   text-align: center;
+  position: relative;
+  display: inline-flex;
+  padding: 30px;
+  margin-left: 70px;
+
+}
+
+.weather-forecast-icon{
+  margin-left:60px;
 }
 
 .weather-forecast-date
@@ -114,14 +125,12 @@ li:first-letter {
   font-size: 16px;
   color: black;
   opacity: 0.3;
+  margin-left: 60px;
 }
 
 .weather-forecast-temperatures{
   font-size:13px;
-}
-
-.weather-forecast-temperature-min{
-  opacity:0.3;
+  margin-left: 60px;
 }
 
 .small-footer {
@@ -133,3 +142,4 @@ li:first-letter {
   width: 100%;
   padding: 10px;
 }
+
