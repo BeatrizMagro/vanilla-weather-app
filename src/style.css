@@ -120,17 +120,24 @@ li:first-letter {
   margin-left:60px;
 }
 
+.weather-forecast img{
+  width: 40px;
+  margin-left: -30px;
+  text-align: center;
+  display: block;
+}
+
 .weather-forecast-date
 {
   font-size: 16px;
   color: black;
   opacity: 0.3;
-  margin-left: 60px;
+  margin-left: 30px;
 }
 
 .weather-forecast-temperatures{
   font-size:13px;
-  margin-left: 60px;
+  margin-left: 30px;
 }
 
 .small-footer {
