@@ -131,6 +131,9 @@ document.addEventListener("DOMContentLoaded", function () {
     )
       ? "#222831"
       : "";
+
+    toggleForecastNightMode(document.body.classList.contains("night-mode"));
+
     let city = document.getElementById("city");
     city.style.color = document.body.classList.contains("night-mode")
       ? "#929aab"
@@ -160,11 +163,80 @@ document.addEventListener("DOMContentLoaded", function () {
         : "";
     });
 
+    let daysOfWeek = document.querySelectorAll(".weather-forecast-date");
+    daysOfWeek.forEach(function (day) {
+      day.style.color = document.body.classList.contains("night-mode")
+        ? "#929aab"
+        : "";
+    });
+
+    let fahrenheitLink = document.querySelector("#fahrenheit-link");
+    let celsiusLink = document.querySelector("#celsius-link");
+
+    fahrenheitLink.style.color = document.body.classList.contains("night-mode")
+      ? "#929aab"
+      : "";
+    celsiusLink.style.color = document.body.classList.contains("night-mode")
+      ? "#929aab"
+      : "";
+
     let bodyBackgroundColor = document.body.classList.contains("night-mode")
       ? "#474a56"
       : "";
     document.body.style.backgroundColor = bodyBackgroundColor;
   }
+
+  function toggleForecastNightMode(isNightMode) {
+    let forecastElement = document.querySelector("#forecast");
+    if (isNightMode) {
+      forecastElement.classList.add("night-mode");
+    } else {
+      forecastElement.classList.remove("night-mode");
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    let nightModeToggle = document.getElementById("night-mode-toggle");
+    nightModeToggle.addEventListener("click", function () {
+      toggleNightMode();
+    });
+  });
+
+  // Rest of your code...
+
+  let city = document.getElementById("city");
+  city.style.color = document.body.classList.contains("night-mode")
+    ? "#929aab"
+    : "";
+  let weatherTemperatureStrong = document.querySelector(
+    ".weather-temperature strong"
+  );
+  weatherTemperatureStrong.style.color = document.body.classList.contains(
+    "night-mode"
+  )
+    ? "#929aab"
+    : "";
+
+  let weatherTemperatureUnits = document.querySelector(
+    ".weather-temperature .units"
+  );
+  weatherTemperatureUnits.style.color = document.body.classList.contains(
+    "night-mode"
+  )
+    ? "#929aab"
+    : "";
+
+  let listItems = document.querySelectorAll("li");
+  listItems.forEach(function (li) {
+    li.style.color = document.body.classList.contains("night-mode")
+      ? "#929aab"
+      : "";
+  });
+
+  let bodyBackgroundColor = document.body.classList.contains("night-mode")
+    ? "#474a56"
+    : "";
+  document.body.style.backgroundColor = bodyBackgroundColor;
 });
 
 function getForecast(city) {
