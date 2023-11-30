@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function toggleNightMode() {
     document.body.classList.toggle("night-mode");
-    var container = document.querySelector(".container");
+    let container = document.querySelector(".container");
     container.style.backgroundColor = document.body.classList.contains(
       "night-mode"
     )
@@ -201,8 +201,6 @@ document.addEventListener("DOMContentLoaded", function () {
       toggleNightMode();
     });
   });
-
-  // Rest of your code...
 
   let city = document.getElementById("city");
   city.style.color = document.body.classList.contains("night-mode")
